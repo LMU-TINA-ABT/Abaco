@@ -2,8 +2,8 @@ import {styled} from "@mui/material";
 import {useState} from "react";
 
 const Kreis = styled("span")({
-    height: "25px",
-    width: "25px",
+    height: "15px",
+    width: "15px",
     backgroundColor: "#bbb",
     borderRadius: "50%",
     display: "inline-block",
@@ -11,6 +11,8 @@ const Kreis = styled("span")({
 
 type PlaettchenProps = {
     callBackOnStateChange: Function;
+    stelle: number;
+    id: number;
 }
 
 export const Plaettchen: React.FC<PlaettchenProps> = (props: PlaettchenProps) => {

@@ -6,6 +6,7 @@ type StellenWertTafelProps = {
     stellen: number;
     numberBase: number;
     numberOfRows: number;
+    callBackOnStateChange: Function;
 }
 
 const StellenWertTafel: React.FC<StellenWertTafelProps> = (props: StellenWertTafelProps) => {
@@ -30,7 +31,9 @@ const StellenWertTafel: React.FC<StellenWertTafelProps> = (props: StellenWertTaf
     const getColumns = () => {
         const columns = [];
         for (let i = 0; i < props.stellen; i++) {
-            columns.push(<StellenWertSpalte base={props.numberBase} header={getHeader(i)} numberOfRows={props.numberOfRows}/>);
+            columns.push(<StellenWertSpalte stelle={i} base={props.numberBase} header={getHeader(i)}
+                                            numberOfRows={props.numberOfRows}
+                                            callBackOnStateChange={props.callBackOnStateChange}/>);
         }
 
         return columns;
@@ -38,7 +41,7 @@ const StellenWertTafel: React.FC<StellenWertTafelProps> = (props: StellenWertTaf
 
     return (
         <div>
-            <Stack direction={"row-reverse"} spacing={4} >
+            <Stack direction={"row-reverse"} spacing={4} sx={{padding: "10px"}}>
                 {getColumns()}
             </Stack>
         </div>

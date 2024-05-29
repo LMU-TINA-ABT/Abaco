@@ -6,6 +6,8 @@ type StellenWertSpalteProps = {
     numberOfRows: number;
     base: number;
     header: string;
+    callBackOnStateChange: Function;
+    stelle: number;
 }
 
 export const StellenWertSpalte: React.FC<StellenWertSpalteProps> =
@@ -15,15 +17,17 @@ export const StellenWertSpalte: React.FC<StellenWertSpalteProps> =
         const handleStateChangeOfPlaettchen = (isActivated: boolean) => {
             if (isActivated) {
                 setNumber(number + 1);
+                props.callBackOnStateChange(props.stelle, true);
             } else {
                 setNumber(number - 1);
+                props.callBackOnStateChange(props.stelle, false);
             }
         }
 
-        const getRow = () => {
+        const getRow = (stelle: number) => {
             const row = [];
             for (let i = 0; i < props.base; i++) {
-                row.push(<Plaettchen callBackOnStateChange={handleStateChangeOfPlaettchen}/>);
+                row.push(<Plaettchen stelle={stelle} id={i} callBackOnStateChange={handleStateChangeOfPlaettchen}/>);
             }
 
             return (
@@ -36,7 +40,7 @@ export const StellenWertSpalte: React.FC<StellenWertSpalteProps> =
         const getRows = () => {
             const rows = [];
             for (let i = 0; i < props.numberOfRows; i++) {
-                rows.push(getRow());
+                rows.push(getRow(i));
             }
             return (
                 <Stack spacing={1}>
@@ -44,11 +48,19 @@ export const StellenWertSpalte: React.FC<StellenWertSpalteProps> =
                 </Stack>);
         }
 
+/*        function getText(number: number) {
+            if (number < 10 || (props.base > 10 && number > props.base)) {
+                return number;
+            } else {
+                return String.fromCharCode(97 + number - 10).toUpperCase();
+            }
+        }*/
+
         return (
             <div>
-                <Typography align={"center"}>{props.header}</Typography>
+                <Typography align={"center"} sx={{paddingBottom: "15px"}}>{props.header}</Typography>
                 {getRows()}
-                <Typography align={"center"}>{number}</Typography>
+                <Typography align={"center"} sx={{paddingTop: "15px"}}>{number}</Typography>
             </div>
         );
     }
