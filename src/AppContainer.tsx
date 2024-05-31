@@ -45,7 +45,7 @@ function AppContainer() {
     }
 
     return (
-        <Container sx={{height: "100vh"}} maxWidth={false} disableGutters
+        <Container sx={{height: "100svh"}} maxWidth={false} disableGutters
                    onTouchStart={(event) => handleTouchStart(event)}
                    onTouchEnd={(event) => handleTouchEnd(event)}
                    onTouchMove={(event) => handleTouchMove(event)}
