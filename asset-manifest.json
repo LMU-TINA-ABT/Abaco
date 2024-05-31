@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Uebung-Stellensysteme/static/css/main.f855e6bc.css",
-    "main.js": "/Uebung-Stellensysteme/static/js/main.863913a0.js",
-    "index.html": "/Uebung-Stellensysteme/index.html",
-    "main.f855e6bc.css.map": "/Uebung-Stellensysteme/static/css/main.f855e6bc.css.map",
-    "main.863913a0.js.map": "/Uebung-Stellensysteme/static/js/main.863913a0.js.map"
+    "main.css": "/Abaco/static/css/main.f855e6bc.css",
+    "main.js": "/Abaco/static/js/main.3c886132.js",
+    "index.html": "/Abaco/index.html",
+    "main.f855e6bc.css.map": "/Abaco/static/css/main.f855e6bc.css.map",
+    "main.3c886132.js.map": "/Abaco/static/js/main.3c886132.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.863913a0.js"
+    "static/js/main.3c886132.js"
   ]
 }
