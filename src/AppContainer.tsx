@@ -3,9 +3,10 @@ import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import {Container, Stack, Typography} from "@mui/material";
 import Abaco from "./components/stellenwerttafel/Abaco";
-import {AbacoSlice, setColoringId, setCurrentMove, setIsColoring} from "./store";
-import DeleteIcon from "./components/utils/DeleteButton";
+import {AbacoSlice, setColoringId, setCurrentMove, setIsColoring, setPlaettchenHistory} from "./store";
+import {DeleteButton} from "./components/utils/DeleteButton";
 import SortButton from "./components/utils/SortButton";
+import PrintButton from "./components/utils/PrintButton";
 
 function AppContainer() {
     const dispatch = useDispatch();
@@ -14,10 +15,12 @@ function AppContainer() {
     const [blueNumber, setBlueNumber] = useState(0);
     const [redNumber, setRedNumber] = useState(0);
     const plaettchenState = useSelector((state: AbacoSlice) => state.plaettchenState);
+    const plaettchenHistory = useSelector((state: AbacoSlice) => state.plaettchenHistory);
 
     useEffect(() => {
         setBlueNumber(plaettchenState.filter(plaettchen => plaettchen.color === "blue").length);
         setRedNumber(plaettchenState.filter(plaettchen => plaettchen.color === "red").length);
+        dispatch(setPlaettchenHistory([...plaettchenHistory, plaettchenState]));
     }, [plaettchenState]);
 
     function handleMouseDown(event: any) {
@@ -56,7 +59,8 @@ function AppContainer() {
                 <Abaco/>
                 <Stack justifyContent={"center"} direction={"row"} alignItems={"center"} spacing={4}>
                     <SortButton/>
-                    <DeleteIcon/>
+                    <DeleteButton/>
+                    <PrintButton/>
                     <Typography variant="h2" color={"blue"} fontWeight={"bold"}>{blueNumber}</Typography>
                     <Typography variant="h2" color={"red"} fontWeight={"bold"}>{redNumber}</Typography>
                 </Stack>
