@@ -19,8 +19,9 @@ export const Plaettchen: React.FC<PlaettchenProps> = (props: PlaettchenProps) =>
     const dispatch = useDispatch();
     const isColoring = useSelector((state: AbacoSlice) => state.isColoring);
     const currentColoringId = useSelector((state: AbacoSlice) => state.coloringId);
+    const color = useSelector((state: AbacoSlice) => state.color);
     const [lastColoringId, setLastColoringId] = useState(-1);
-    const color = useSelector((state: AbacoSlice) => state.plaettchenState.find(plaettchen => plaettchen.id === props.id)?.color);
+    const currentColor = useSelector((state: AbacoSlice) => state.plaettchenState.find(plaettchen => plaettchen.id === props.id)?.color);
 
     const currentMove = useSelector((state: AbacoSlice) => state.currentMove);
 
@@ -52,12 +53,16 @@ export const Plaettchen: React.FC<PlaettchenProps> = (props: PlaettchenProps) =>
     }, [])
 
     function handleClick() {
-        if (color === "grey") {
-            dispatch(setPlaettchenColor({id: props.id, color: "blue"}));
-        } else if (color == "blue") {
-            dispatch(setPlaettchenColor({id: props.id, color: "red"}));
+        if(color === "variable") {
+            if (currentColor === "grey") {
+                dispatch(setPlaettchenColor({id: props.id, color: "blue"}));
+            } else if (currentColor == "blue") {
+                dispatch(setPlaettchenColor({id: props.id, color: "red"}));
+            } else {
+                dispatch(setPlaettchenColor({id: props.id, color: "grey"}));
+            }
         } else {
-            dispatch(setPlaettchenColor({id: props.id, color: "grey"}));
+            dispatch(setPlaettchenColor({id: props.id, color: color}));
         }
     }
 
@@ -69,10 +74,9 @@ export const Plaettchen: React.FC<PlaettchenProps> = (props: PlaettchenProps) =>
 
     return (
         <>
-            <Kreis id={props.id.toString()} style={{backgroundColor: color}}
+            <Kreis id={props.id.toString()} style={{backgroundColor: currentColor}}
                    onClick={handleClick}
                    onMouseEnter={handleMouseEnter}
-                   onMouseLeave={handleMouseEnter}
             />
         </>
     );

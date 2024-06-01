@@ -7,6 +7,7 @@ import {AbacoSlice, setColoringId, setCurrentMove, setIsColoring, setPlaettchenH
 import {DeleteButton} from "./components/utils/DeleteButton";
 import SortButton from "./components/utils/SortButton";
 import PrintButton from "./components/utils/PrintButton";
+import FingerButton from "./components/utils/FingerButton";
 
 function AppContainer() {
     const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function AppContainer() {
             <Stack justifyContent={"center"} direction={"column"} alignItems={"center"} sx={{paddingTop: "20px"}}>
                 <Abaco/>
                 <Stack justifyContent={"center"} direction={"row"} alignItems={"center"} spacing={4}>
+                    <FingerButton />
                     <SortButton/>
                     <DeleteButton/>
                     <PrintButton/>

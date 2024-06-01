@@ -5,7 +5,8 @@ export type AbacoSlice = {
     isColoring: boolean,
     coloringId: number,
     currentMove?: { x: number, y: number },
-    plaettchenHistory: PlaettchenSlice[][]
+    plaettchenHistory: PlaettchenSlice[][],
+    color: string
 }
 
 export type PlaettchenSlice = {
@@ -27,13 +28,17 @@ const initialAbacoState = {
     isColoring: false,
     coloringId: 0,
     text: "",
-    plaettchenHistory: []
+    plaettchenHistory: [],
+    color: "variable",
 }
 
 const AbacoSlice = createSlice({
     name: 'abaco',
     initialState: initialAbacoState,
     reducers: {
+        setColor: (state, action: PayloadAction<string>) => {
+            state.color = action.payload;
+        },
         setPlaettchenHistory: (state, action: PayloadAction<PlaettchenSlice[][]>) => {
             // @ts-ignore
             state.plaettchenHistory = action.payload
@@ -69,6 +74,7 @@ const AbacoSlice = createSlice({
 })
 
 export const {
+    setColor,
     setPlaettchenHistory,
     setPlaettchen,
     colorAllPlaettchenGrey,
