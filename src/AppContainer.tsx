@@ -33,8 +33,8 @@ function AppContainer() {
     }
 
     function handleTouchStart(event: any) {
-        setIsTouching(true);
         dispatch(setColoringId(currentColoringId + 1));
+        setIsTouching(true);
     }
 
     function handleTouchEnd(event: React.TouchEvent<HTMLDivElement>) {

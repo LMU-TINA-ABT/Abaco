@@ -4,8 +4,8 @@ import {AbacoSlice, setPlaettchenColor} from "../../store";
 import {useEffect, useState} from "react";
 
 const Kreis = styled("span")({
-    height: "25px",
-    width: "25px",
+    height: "50px",
+    width: "50px",
     backgroundColor: "#bbb",
     borderRadius: "50%",
     display: "inline-block",
@@ -34,8 +34,8 @@ export const Plaettchen: React.FC<PlaettchenProps> = (props: PlaettchenProps) =>
             if (currentMove.x >= xValueMin && currentMove.x <= xValueMax &&
                 currentMove.y >= yValueMin && currentMove.y <= yValueMax &&
                 currentColoringId !== lastColoringId) {
-                handleClick();
                 setLastColoringId(currentColoringId);
+                handleClick();
             }
         }
     }, [currentMove]);
@@ -72,6 +72,7 @@ export const Plaettchen: React.FC<PlaettchenProps> = (props: PlaettchenProps) =>
             <Kreis id={props.id.toString()} style={{backgroundColor: color}}
                    onClick={handleClick}
                    onMouseEnter={handleMouseEnter}
+                   onMouseLeave={handleMouseEnter}
             />
         </>
     );
